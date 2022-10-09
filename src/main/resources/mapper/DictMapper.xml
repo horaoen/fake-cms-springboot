@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.myfirstcms.mapper.DictMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.myfirstcms.pojo.DictDO">
+        <id column="dict_id" jdbcType="INTEGER" property="id"/>
+        <result column="dict_name" jdbcType="VARCHAR" property="dict_name"/>
+        <result column="dict_type" jdbcType="VARCHAR" property="dict_type"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
+        <result column="dict_remark" jdbcType="VARCHAR" property="dict_remark"/>
+    </resultMap>
+</mapper>

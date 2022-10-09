@@ -15,8 +15,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/book")
 public class BookController {
-    @Autowired
+
     private BookServiceImpl bookServiceImpl;
+
+    @Autowired
+    public void setBookServiceImpl(BookServiceImpl bookServiceImpl) {
+        this.bookServiceImpl = bookServiceImpl;
+    }
 
     @GetMapping("")
     public List<BookDO> getBooks() {

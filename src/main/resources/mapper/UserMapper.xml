@@ -14,5 +14,8 @@
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
 
+    <select id="UserLogin" parameterType="com.example.myfirstcms.pojo.UserDO" resultMap="BaseResultMap">
+        select * from lin_user where username=#{username}
+    </select>
 
 </mapper>
