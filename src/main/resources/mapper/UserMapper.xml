@@ -3,10 +3,12 @@
 <mapper namespace="com.example.myfirstcms.mapper.UserMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.myfirstcms.pojo.UserDO">
+    <resultMap id="BaseResultMap" type="UserDO">
         <id column="id" property="id"/>
         <result column="username" property="username"/>
         <result column="nickname" property="nickname"/>
+        <result column="password" property="password"/>
+        <result column="salt" property="salt"/>
         <result column="avatar" property="avatar"/>
         <result column="email" property="email"/>
         <result column="create_time" property="createTime"/>
@@ -14,8 +16,8 @@
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
 
-    <select id="UserLogin" parameterType="com.example.myfirstcms.pojo.UserDO" resultMap="BaseResultMap">
-        select * from lin_user where username=#{username}
+    <select id="login" resultType="com.example.myfirstcms.dto.user.UserDTO">
+        select * from lin_user where username=#{username} and password = #{password}
     </select>
 
 </mapper>

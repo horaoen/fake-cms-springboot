@@ -25,6 +25,16 @@ public class UserDO extends BaseAllHave implements Serializable {
     private String nickname;
 
     /**
+     * 密码
+     */
+    private String password;
+
+    /**
+     * 加盐
+     */
+    private String salt;
+
+    /**
      * 头像url
      */
     private String avatar;

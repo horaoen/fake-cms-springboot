@@ -1,13 +1,13 @@
 package com.example.myfirstcms.controller;
 
 
-import com.example.myfirstcms.Token.JWTUtils;
-import com.example.myfirstcms.pojo.UserDO;
+import com.example.myfirstcms.autoconfigure.exception.HttpException;
+import com.example.myfirstcms.core.utils.JWTUtils;
+import com.example.myfirstcms.dto.user.LoginDTO;
+import com.example.myfirstcms.dto.user.UserDTO;
 import com.example.myfirstcms.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,24 +23,29 @@ public class UserController {
         this.userService = userService;
     }
 
-//    @GetMapping("/login")
-//    public Map<String,Object> UserLogin(UserDO userDO){
-//        Map<String,Object> result = new HashMap<>();
-//        try {
-//            UserDO user = userService.UserLogin(userDO);
-//            Map<String, String> map = new HashMap<>();//用来存放payload
-//            map.put("id", String.valueOf(user.getId()));
-//            map.put("username", user.getUsername());
-//            String token = JWTUtils.getToken(map);
-//            result.put("state",true);
-//            result.put("msg","登录成功!!!");
-//            result.put("token",token); //成功返回token信息
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            result.put("state","false");
-//            result.put("msg",e.getMessage());
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginDTO loginDTO
+//                        @RequestHeader(value = "Tag", required = false) String tag
+    ){
+        HashMap<String, Object> hashMap = new HashMap<>();
+        //验证码逻辑
+//        UserDO user = userService.getUserByUsername(loginDTO.getUsername());
+//        if(user == null){
+//            throw new NotFoundException(10021);
 //        }
-//        return result;
-//    }
+
+        UserDTO login = userService.login(loginDTO);
+        if(login == null){
+            throw new HttpException(10031);
+        }
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("username", login.getUsername());
+        map.put("nickname", login.getNickname());
+        map.put("avatar", login.getAvatar());
+        map.put("email", login.getEmail());
+        String token = JWTUtils.getToken(map);
+        return token;
+    }
 
 }

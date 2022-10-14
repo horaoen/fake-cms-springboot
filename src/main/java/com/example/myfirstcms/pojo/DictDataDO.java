@@ -1,7 +1,7 @@
 package com.example.myfirstcms.pojo;
 
 
-import lombok.Data;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 @Getter
 @Setter
+@TableName("lin_dict_data")
 public class DictDataDO extends BaseAllHave implements Serializable {
     private static final long serialVersionUID = -4043865590343278970L;
 

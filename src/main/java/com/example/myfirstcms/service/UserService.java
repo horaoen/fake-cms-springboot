@@ -1,16 +1,20 @@
 package com.example.myfirstcms.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.example.myfirstcms.dto.user.LoginDTO;
+import com.example.myfirstcms.dto.user.UserDTO;
 import com.example.myfirstcms.pojo.UserDO;
-import org.apache.catalina.User;
-
-
-import java.util.List;
-import java.util.Map;
 
 
 public interface UserService extends IService<UserDO> {
 
-    UserDO UserLogin(UserDO userDO);
+    /**
+     * 通过用户名查找用户
+     *
+     * @param username 用户名
+     * @return 用户
+     */
+    UserDO getUserByUsername(String username);
+
+    UserDTO login(LoginDTO loginDTO);
 }

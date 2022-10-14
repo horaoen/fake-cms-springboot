@@ -24,13 +24,13 @@ public class PermissionDO extends BaseAllHave implements Serializable {
     private String name;
 
     /**
-     * 权限所属模块，例如：人员管理
+     * 权限所属url地址
      */
-    private String module;
+    private String url;
 
     /**
-     * 0：关闭 1：开启
+     * 权限范围
      */
-    private Boolean mount;
+    private Boolean code;
 
 }

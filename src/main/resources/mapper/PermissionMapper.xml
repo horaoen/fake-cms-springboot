@@ -3,11 +3,11 @@
 <mapper namespace="com.example.myfirstcms.mapper.PermissionMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.example.myfirstcms.pojo.PermissionDO">
+    <resultMap id="BaseResultMap" type="PermissionDO">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
-        <result column="module" property="module"/>
-        <result column="mount" property="mount"/>
+        <result column="url" property="url"/>
+        <result column="code" property="code"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="delete_time" property="deleteTime"/>
