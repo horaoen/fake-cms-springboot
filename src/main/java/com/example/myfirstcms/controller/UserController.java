@@ -4,9 +4,14 @@ package com.example.myfirstcms.controller;
 import com.example.myfirstcms.autoconfigure.exception.HttpException;
 import com.example.myfirstcms.core.utils.JWTUtils;
 import com.example.myfirstcms.dto.user.LoginDTO;
+import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
+import com.example.myfirstcms.pojo.UserDO;
 import com.example.myfirstcms.service.UserService;
+import com.example.myfirstcms.vo.UnifyResponseVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -35,17 +40,27 @@ public class UserController {
 //            throw new NotFoundException(10021);
 //        }
 
-        UserDTO login = userService.login(loginDTO);
+        UserDO login = userService.login(loginDTO);
+        UserDTO userDTO = new UserDTO();
         if(login == null){
             throw new HttpException(10031);
         }
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("username", login.getUsername());
-        map.put("nickname", login.getNickname());
-        map.put("avatar", login.getAvatar());
-        map.put("email", login.getEmail());
+        BeanUtils.copyProperties(login, userDTO);
+        System.out.println(userDTO);
+        Map<String, String> map = new HashMap<String,String>();
+        map.put("id", userDTO.getId().toString());
+        map.put("username", userDTO.getUsername());
+        map.put("nickname", userDTO.getNickname());
+        map.put("avatar", userDTO.getAvatar());
+        map.put("email", userDTO.getEmail());
         String token = JWTUtils.getToken(map);
         return token;
+    }
+
+    @PutMapping("")
+    public UnifyResponseVO<String> update(@RequestBody @Validated UpdateInfoDTO updateInfoDTO){
+        userService.updateUserInfo(updateInfoDTO);
+        return null;
     }
 
 }

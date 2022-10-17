@@ -16,8 +16,12 @@
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
 
-    <select id="login" resultType="com.example.myfirstcms.dto.user.UserDTO">
+    <select id="login" resultMap="BaseResultMap">
         select * from lin_user where username=#{username} and password = #{password}
     </select>
 
+
+    <select id="queryById" resultType="UserDO">
+        select * from lin_user where id = #{id}
+    </select>
 </mapper>

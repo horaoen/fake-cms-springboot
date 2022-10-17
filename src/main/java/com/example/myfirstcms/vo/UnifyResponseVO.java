@@ -1,9 +1,13 @@
 package com.example.myfirstcms.vo;
 
 
-import com.sun.org.apache.bcel.internal.classfile.Code;
+import com.example.myfirstcms.autoconfigure.bean.Code;
+import com.example.myfirstcms.core.utils.RequestUtils;
+import com.example.myfirstcms.core.utils.ResponseUtils;
 import lombok.*;
 import org.apache.catalina.util.RequestUtil;
+import org.apache.tomcat.util.http.ResponseUtil;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -22,7 +26,38 @@ public class UnifyResponseVO<T> {
     private String request;
 
     public UnifyResponseVO() {
+        this.code = Code.SUCCESS.getCode();
+        this.request = RequestUtils.getSimpleRequest();
     }
 
+    public UnifyResponseVO(int code) {
+        this.code = code;
+        this.request = RequestUtils.getSimpleRequest();
+    }
 
+    public UnifyResponseVO(T message) {
+        this.code = Code.SUCCESS.getCode();
+        this.message = message;
+        this.request = RequestUtils.getSimpleRequest();
+    }
+
+    public UnifyResponseVO(int code, T message) {
+        this.code = code;
+        this.message = message;
+        this.request = RequestUtils.getSimpleRequest();
+    }
+
+    public UnifyResponseVO(T message, HttpStatus httpStatus) {
+        this.code = Code.SUCCESS.getCode();
+        this.message = message;
+        this.request = RequestUtils.getSimpleRequest();
+        ResponseUtils.setCurrentResponseHttpStatus(httpStatus.value());
+    }
+
+    public UnifyResponseVO(int code, T message, HttpStatus httpStatus) {
+        this.code = code;
+        this.message = message;
+        this.request = RequestUtils.getSimpleRequest();
+        ResponseUtils.setCurrentResponseHttpStatus(httpStatus.value());
+    }
 }

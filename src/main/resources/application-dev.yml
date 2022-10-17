@@ -9,8 +9,8 @@ spring:
   # 数据源配置，请修改为你项目的实际配置
   datasource:
     username: root
-    password: scy464658
-    url: jdbc:mysql://localhost:3306/lin-cms?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
+    password: Horaoen@624
+    url: jdbc:mysql://42.192.5.249:3306/lin-cms?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 

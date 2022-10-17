@@ -11,5 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserMapper extends BaseMapper<UserDO> {
 
-    UserDTO login(LoginDTO loginDTO);
+    UserDO login(LoginDTO loginDTO);
+
+    UserDO queryById(int id);
 }
