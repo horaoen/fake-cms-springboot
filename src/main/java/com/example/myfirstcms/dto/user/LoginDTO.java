@@ -9,10 +9,10 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class LoginDTO {
 
-//    @NotBlank(message = "{username.not-blank}")
+   @NotBlank(message = "{username.not-blank}")
     private String username;
 
-//    @NotBlank(message = "{password.new.not-blank}")
+    @NotBlank(message = "{password.new.not-blank}")
     private String password;
 
     private String captcha;

@@ -3,12 +3,15 @@ package com.example.myfirstcms.controller;
 
 import com.example.myfirstcms.autoconfigure.exception.HttpException;
 import com.example.myfirstcms.core.utils.JWTUtils;
+import com.example.myfirstcms.core.utils.LocalUser;
+import com.example.myfirstcms.dto.user.ChangePasswordDTO;
 import com.example.myfirstcms.dto.user.LoginDTO;
 import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
 import com.example.myfirstcms.pojo.UserDO;
 import com.example.myfirstcms.service.UserService;
 import com.example.myfirstcms.vo.UnifyResponseVO;
+import com.example.myfirstcms.vo.UpdatedVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
+@Validated
 public class UserController {
 
     private UserService userService;
@@ -29,6 +33,9 @@ public class UserController {
     }
 
 
+    /**
+     * 用户登陆
+     */
     @PostMapping("/login")
     public String login(@RequestBody LoginDTO loginDTO
 //                        @RequestHeader(value = "Tag", required = false) String tag
@@ -57,10 +64,18 @@ public class UserController {
         return token;
     }
 
+    /**
+     * 更新用户信息
+     */
     @PutMapping("")
-    public UnifyResponseVO<String> update(@RequestBody @Validated UpdateInfoDTO updateInfoDTO){
+    public UpdatedVO update(@RequestBody @Validated UpdateInfoDTO updateInfoDTO){
         userService.updateUserInfo(updateInfoDTO);
-        return null;
+        return new UpdatedVO(6);
     }
 
+    @PutMapping("/change_password")
+    public UpdatedVO updatePassword(@RequestBody @Validated ChangePasswordDTO validator) {
+        userService.changeUserPassword(validator);
+        return new UpdatedVO(4);
+    }
 }

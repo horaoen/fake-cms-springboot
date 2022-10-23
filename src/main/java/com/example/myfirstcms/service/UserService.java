@@ -2,6 +2,7 @@ package com.example.myfirstcms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.myfirstcms.dto.admin.UpdateUserInfoDTO;
+import com.example.myfirstcms.dto.user.ChangePasswordDTO;
 import com.example.myfirstcms.dto.user.LoginDTO;
 import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
@@ -23,4 +24,6 @@ public interface UserService extends IService<UserDO> {
     UserDO updateUserInfo(UpdateInfoDTO updateInfoDTO);
 
     UserDO queryById(int id);
+
+    UserDO changeUserPassword(ChangePasswordDTO validator);
 }

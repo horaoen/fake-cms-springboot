@@ -15,6 +15,16 @@
         <result column="update_time" property="updateTime"/>
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
+    <update id="updateByUserInfo">
+        update lin_user
+            <set>
+            <if test="username != null">username=#{username},</if>
+            <if test="nickname != null">nickname = #{nickname},</if>
+            <if test="avatar != null"> avatar = #{avatar},</if>
+            <if test="email != null"> email = #{email}</if>
+        </set>
+        where id = #{id}
+    </update>
 
     <select id="login" resultMap="BaseResultMap">
         select * from lin_user where username=#{username} and password = #{password}
@@ -24,4 +34,11 @@
     <select id="queryById" resultType="UserDO">
         select * from lin_user where id = #{id}
     </select>
+
+
+    <select id="selectCountByUsername" resultType="java.lang.Integer">
+        select count(*) from lin_user where username = #{username}
+    </select>
+
+
 </mapper>

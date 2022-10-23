@@ -14,4 +14,9 @@ public interface UserMapper extends BaseMapper<UserDO> {
     UserDO login(LoginDTO loginDTO);
 
     UserDO queryById(int id);
+
+    int selectCountByUsername(String username);
+
+    int updateByUserInfo(UserDO userDO);
 }
+

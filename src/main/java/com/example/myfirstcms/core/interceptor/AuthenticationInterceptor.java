@@ -35,6 +35,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             UserMapper userMapper = ApplicationContextPro.getBean(UserMapper.class);
             UserDO userDO = userMapper.queryById(int_id);
             LocalUser.setLocalUser(userDO);
+//            System.out.println(LocalUser.getLocalUser());
             return true;//放行请求
         }catch (SignatureVerificationException e) {
             e.printStackTrace();
