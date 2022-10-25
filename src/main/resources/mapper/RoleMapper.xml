@@ -12,7 +12,22 @@
         <result column="update_time" property="updateTime"/>
         <result column="delete_time" property="deleteTime"/>
     </resultMap>
-
+    <select id="selectGroupsByUserId"  parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        SELECT r.id, r.role_name, r.note, r.status, r.create_time, r.update_time, r.delete_time
+        from lin_role AS r
+        WHERE
+            r.delete_time IS NULL
+          AND
+                r.id IN
+                (
+                    SELECT ug.role_id
+                    FROM lin_user AS u
+                             LEFT JOIN lin_user_role as ug
+                                       ON ug.user_id = u.id
+                    WHERE u.id = 2
+                      AND u.delete_time IS NULL
+                )
+    </select>
 
 
 </mapper>

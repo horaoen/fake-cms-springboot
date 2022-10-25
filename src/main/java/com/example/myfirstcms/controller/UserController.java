@@ -8,16 +8,20 @@ import com.example.myfirstcms.dto.user.ChangePasswordDTO;
 import com.example.myfirstcms.dto.user.LoginDTO;
 import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
+import com.example.myfirstcms.pojo.RoleDO;
 import com.example.myfirstcms.pojo.UserDO;
+import com.example.myfirstcms.service.RoleService;
 import com.example.myfirstcms.service.UserService;
 import com.example.myfirstcms.vo.UnifyResponseVO;
 import com.example.myfirstcms.vo.UpdatedVO;
+import com.example.myfirstcms.vo.UserInfoVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -26,6 +30,13 @@ import java.util.Map;
 public class UserController {
 
     private UserService userService;
+
+    private RoleService roleService;
+
+    @Autowired
+    public void setRoleService(RoleService roleService) {
+        this.roleService = roleService;
+    }
 
     @Autowired
     public void setUserService(UserService userService) {
@@ -77,5 +88,17 @@ public class UserController {
     public UpdatedVO updatePassword(@RequestBody @Validated ChangePasswordDTO validator) {
         userService.changeUserPassword(validator);
         return new UpdatedVO(4);
+    }
+
+
+
+    /**
+     * 查询自己信息
+     */
+    @GetMapping("/information")
+    public UserInfoVO getInformation(){
+        UserDO user = LocalUser.getLocalUser();
+        List<RoleDO> roles = roleService.getUserGroupsByUserId(user.getId());
+        return new UserInfoVO(user, roles);
     }
 }
