@@ -7,8 +7,6 @@ import com.example.myfirstcms.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements RoleService {
@@ -19,10 +17,5 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, RoleDO> implements 
     @Autowired
     public void setRoleMapper(RoleMapper roleMapper) {
         this.roleMapper = roleMapper;
-    }
-
-    @Override
-    public List<RoleDO> getUserGroupsByUserId(Integer id) {
-        return this.baseMapper.selectGroupsByUserId(id);
     }
 }
