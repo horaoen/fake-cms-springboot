@@ -3,14 +3,12 @@ package com.example.myfirstcms.controller;
 
 import com.example.myfirstcms.autoconfigure.exception.HttpException;
 import com.example.myfirstcms.core.utils.JWTUtils;
-import com.example.myfirstcms.core.utils.LocalUser;
 import com.example.myfirstcms.dto.user.ChangePasswordDTO;
 import com.example.myfirstcms.dto.user.LoginDTO;
 import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
 import com.example.myfirstcms.pojo.UserDO;
 import com.example.myfirstcms.service.UserService;
-import com.example.myfirstcms.vo.UnifyResponseVO;
 import com.example.myfirstcms.vo.UpdatedVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,5 @@
 package com.example.myfirstcms.core.exception;
 
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.exceptions.SignatureVerificationException;
 import com.example.myfirstcms.autoconfigure.bean.Code;
 import com.example.myfirstcms.autoconfigure.exception.HttpException;
 import com.example.myfirstcms.core.configuration.ExceptionCodeConfiguration;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.lang.reflect.InvocationTargetException;
 
 import static com.example.myfirstcms.core.utils.RequestUtils.getMethodAndUrl;

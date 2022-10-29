@@ -1,6 +1,5 @@
 package com.example.myfirstcms.core.aop;
 
-import com.example.myfirstcms.vo.UnifyResponseVO;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
