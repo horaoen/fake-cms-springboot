@@ -10,11 +10,7 @@ import com.example.myfirstcms.core.utils.JWTUtils;
 import com.example.myfirstcms.core.utils.LocalUser;
 import com.example.myfirstcms.mapper.UserMapper;
 import com.example.myfirstcms.pojo.UserDO;
-import com.example.myfirstcms.service.Impl.UserServiceImpl;
-import com.example.myfirstcms.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +22,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        //获取请求头中令牌
+        if(isRequestForSwagger(request)){
+            return true;
+        }
         String token = request.getHeader("token");
         try {
             DecodedJWT verify = JWTUtils.verify(token);//验证令牌
@@ -50,6 +48,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             e.printStackTrace();
             throw new Exception();
         }
+    }
+
+    private boolean isRequestForSwagger(HttpServletRequest request) {
+        return request.getRequestURI().startsWith("/swagger-ui")
+                || request.getRequestURI().startsWith("/v3/api-docs");
     }
 
 

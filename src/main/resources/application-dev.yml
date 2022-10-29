@@ -19,31 +19,8 @@ mybatis-plus:
   type-aliases-package: com.example.myfirstcms.pojo
 
 
-
-
-
-
-## 开启权限拦截
-#auth:
-#  enabled: true
-#
-## 开启登录要求验证码
-#login-captcha:
-#  enabled: true
-#  secret: "m49CPM5ak@MDXTzbbT_ZEyMM3KBsBn!h"
-#
-## 开启http请求日志记录
-#request-log:
-#  enabled: true
-#
-#
-#logging:
-#  level:
-#    # web信息日志记录
-#    web: debug
-#    # SQL日志记录
-#    io.github.talelin.latticy.mapper: debug
-
+springdoc:
+  packages-to-scan: com.example.myfirstcms.controller
 
 
 
