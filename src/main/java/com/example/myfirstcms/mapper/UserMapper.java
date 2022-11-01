@@ -3,11 +3,12 @@ package com.example.myfirstcms.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.myfirstcms.dto.user.LoginDTO;
 import com.example.myfirstcms.pojo.UserDO;
+import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 
 
-@Repository
+@Mapper
 public interface UserMapper extends BaseMapper<UserDO> {
 
     UserDO login(LoginDTO loginDTO);

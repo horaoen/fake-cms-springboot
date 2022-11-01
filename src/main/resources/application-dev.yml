@@ -13,14 +13,16 @@ spring:
     url: jdbc:mysql://42.192.5.249:3306/lin-cms?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  mvc:
+    log-request-details: true
+logging:
+  level:
+    web: debug
+
 #properties文件格式：
 
 mybatis-plus:
   type-aliases-package: com.example.myfirstcms.pojo
-
-
-springdoc:
-  packages-to-scan: com.example.myfirstcms.controller
 
 
 

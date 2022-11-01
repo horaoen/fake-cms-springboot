@@ -2,10 +2,10 @@ package com.example.myfirstcms.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.myfirstcms.pojo.PermissionDO;
-import org.springframework.stereotype.Repository;
+import org.apache.ibatis.annotations.Mapper;
 
 
-@Repository
+@Mapper
 public interface PermissionMapper extends BaseMapper<PermissionDO> {
 
 }
