@@ -9,7 +9,9 @@ import com.example.myfirstcms.dto.user.UpdateInfoDTO;
 import com.example.myfirstcms.dto.user.UserDTO;
 import com.example.myfirstcms.pojo.UserDO;
 import com.example.myfirstcms.service.UserService;
+import com.example.myfirstcms.vo.UnifyResponseVO;
 import com.example.myfirstcms.vo.UpdatedVO;
+import com.example.myfirstcms.vo.UserInfoVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -75,5 +77,15 @@ public class UserController {
     public UpdatedVO updatePassword(@RequestBody @Validated ChangePasswordDTO validator) {
         userService.changeUserPassword(validator);
         return new UpdatedVO(4);
+    }
+
+    @GetMapping("/{id}")
+    public UnifyResponseVO<UserInfoVO> GetUserById(@PathVariable Integer id){
+        UserDO userDO = userService.queryById(id);
+        UserInfoVO userInfoVO = new UserInfoVO();
+        BeanUtils.copyProperties(userDO, userInfoVO);
+        UnifyResponseVO<UserInfoVO> unifyResponse = new UnifyResponseVO<>();
+        unifyResponse.setMessage(userInfoVO);
+        return unifyResponse;
     }
 }

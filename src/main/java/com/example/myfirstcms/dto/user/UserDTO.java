@@ -1,5 +1,6 @@
 package com.example.myfirstcms.dto.user;
 
+import com.example.myfirstcms.infrastructure.dict.annotation.Dict;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,6 +24,11 @@ public class UserDTO {
      * 头像url
      */
     private String avatar;
+
+    /**
+     *性别
+     */
+    private Integer sex;
 
     /**
      * 邮箱

@@ -7,4 +7,6 @@ import com.example.myfirstcms.infrastructure.dict.entity.Dict;
 
 public interface DictService extends IService<Dict> {
     IPage<Dict> queryPage(DictRequest request);
+
+    boolean checkDictExistByDictCode(String dictCode);
 }

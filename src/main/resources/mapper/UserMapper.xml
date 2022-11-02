@@ -14,6 +14,7 @@
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="delete_time" property="deleteTime"/>
+        <result column="sex" property="sex"></result>
     </resultMap>
     <update id="updateByUserInfo">
         update lin_user

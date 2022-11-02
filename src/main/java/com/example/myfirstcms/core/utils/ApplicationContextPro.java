@@ -5,11 +5,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-//解决多线程 无法通过@Autowired注入bean
+/**
+ *
+ * 解决多线程 无法通过@Autowired注入bean
+ */
 @Component
 public class ApplicationContextPro implements ApplicationContextAware {
-    //上下文对象实例
-    private static ApplicationContext applicationContext; //applicationContext
+    //上下文对象实例 applicationContext
+    private static ApplicationContext applicationContext;
 
     //生成get和set方法
     @Override

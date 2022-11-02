@@ -1,5 +1,6 @@
 package com.example.myfirstcms.vo;
 
+import com.example.myfirstcms.infrastructure.dict.annotation.Dict;
 import com.example.myfirstcms.pojo.RoleDO;
 import com.example.myfirstcms.pojo.UserDO;
 import lombok.AllArgsConstructor;
@@ -22,17 +23,18 @@ public class UserInfoVO {
 
     private String nickname;
 
+    @Dict(dictCode = "sex")
+    private Integer sex;
+
     private String email;
 
     private String avatar;
 
-    /**
-    * 分组
-    */
-    public List<RoleDO> roles;
 
-    public UserInfoVO(UserDO user, List<RoleDO> roles){
-        BeanUtils.copyProperties(user, this);
-        this.roles = roles;
-    }
+//    public List<RoleDO> roles;
+//
+//    public UserInfoVO(UserDO user, List<RoleDO> roles){
+//        BeanUtils.copyProperties(user, this);
+//        this.roles = roles;
+//    }
 }

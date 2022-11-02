@@ -35,6 +35,11 @@ public class UserDO extends BaseAllHave implements Serializable {
     private String salt;
 
     /**
+     * 性别
+     */
+    private Integer sex;
+
+    /**
      * 头像url
      */
     private String avatar;
