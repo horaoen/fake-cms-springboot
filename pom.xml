@@ -3,10 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>MyFirstCMS</artifactId>
+    <artifactId>fake-cms-springboot</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MyFirstCMS</name>
-    <description>MyFirstCMS</description>
+    <name>fake-cms-springboot</name>
+    <description>fake-cms-springboot</description>
 
     <properties>
         <java.version>1.8</java.version>
