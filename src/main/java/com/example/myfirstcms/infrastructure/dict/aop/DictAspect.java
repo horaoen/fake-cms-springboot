@@ -3,7 +3,7 @@ package com.example.myfirstcms.infrastructure.dict.aop;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.myfirstcms.infrastructure.dict.annotation.Dict;
-import com.example.myfirstcms.mapper.DictMapper;
+import com.example.myfirstcms.infrastructure.dict.mapper.DictMapper;
 import com.example.myfirstcms.vo.UnifyResponseVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

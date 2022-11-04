@@ -9,7 +9,7 @@ import com.example.myfirstcms.infrastructure.dict.dto.DictRequest;
 import com.example.myfirstcms.infrastructure.dict.entity.Dict;
 
 import com.example.myfirstcms.infrastructure.dict.service.DictService;
-import com.example.myfirstcms.mapper.DictMapper;
+import com.example.myfirstcms.infrastructure.dict.mapper.DictMapper;
 import org.springframework.stereotype.Service;
 
 
