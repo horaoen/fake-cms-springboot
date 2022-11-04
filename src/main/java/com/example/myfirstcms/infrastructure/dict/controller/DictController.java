@@ -48,4 +48,13 @@ public class DictController {
         return "删除成功";
     }
 
+    @PutMapping("{dictId}")
+    public String update(@PathVariable String dictId,
+    @RequestBody Dict dictDto) {
+        //TODO 检查id是否存在，check 各种check方法可以写在相应service里，也可以封装成Util类做的通用一点别的service也能用。
+        dictDto.setId(dictId);
+        dictService.updateById(dictDto);
+        return "更新成功";
+    }
+
 }

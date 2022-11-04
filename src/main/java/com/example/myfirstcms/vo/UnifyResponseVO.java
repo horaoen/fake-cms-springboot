@@ -4,11 +4,10 @@ package com.example.myfirstcms.vo;
 import com.example.myfirstcms.autoconfigure.bean.Code;
 import com.example.myfirstcms.core.utils.RequestUtils;
 import com.example.myfirstcms.core.utils.ResponseUtils;
-import lombok.*;
-import org.apache.catalina.util.RequestUtil;
-import org.apache.tomcat.util.http.ResponseUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
 
 /**
  * 统一API响应结果封装
