@@ -8,7 +8,7 @@ spring:
   datasource:
     username: root
     password: scy464658
-    url: jdbc:mysql://localhost:3306/lin-cms?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
+    url: jdbc:mysql://fake-cms-mysql:3306/lin-cms?useSSL=false&serverTimezone=UTC&characterEncoding=UTF8
     driver-class-name: com.mysql.cj.jdbc.Driver
   mvc:
     # 404 交给异常处理器处理
