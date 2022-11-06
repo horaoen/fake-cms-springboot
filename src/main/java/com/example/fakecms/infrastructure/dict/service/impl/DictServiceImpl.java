@@ -8,19 +8,27 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.fakecms.infrastructure.dict.dto.DictRequest;
 import com.example.fakecms.infrastructure.dict.entity.Dict;
 
+import com.example.fakecms.infrastructure.dict.entity.DictData;
+import com.example.fakecms.infrastructure.dict.mapper.DictDataMapper;
 import com.example.fakecms.infrastructure.dict.service.DictService;
 import com.example.fakecms.infrastructure.dict.mapper.DictMapper;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements DictService {
 
-    private final DictMapper dictMapper;
+    private  DictMapper dictMapper;
 
-    public DictServiceImpl(DictMapper dictMapper) {
+    private DictDataMapper dictDataMapper;
+
+    @Autowired
+    public DictServiceImpl(DictMapper dictMapper, DictDataMapper dictDataMapper) {
         this.dictMapper = dictMapper;
+        this.dictDataMapper = dictDataMapper;
     }
+
     @Override
     public IPage<Dict> queryPage(DictRequest request) {
         IPage<Dict> page = new Page<>(request.getPageNo(), request.getPageSize());
@@ -39,7 +47,28 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     @Override
     public boolean checkDictExistByDictCode(String dictCode) {
-        int rows = this.baseMapper.checkDictExistByDictCode(dictCode);
-        return rows > 0;
+        LambdaQueryWrapper<Dict> queryWrapper = new LambdaQueryWrapper<Dict>();
+        queryWrapper
+                .eq(StrUtil.isNotBlank(dictCode),Dict::getDictCode, dictCode);
+        Integer integer = dictMapper.selectCount(queryWrapper);
+        return integer > 0;
+    }
+
+    @Override
+    public String queryDictValueByKey(String code, String key) {
+        LambdaQueryWrapper<DictData> queryWrapper = new LambdaQueryWrapper<DictData>();
+        queryWrapper.eq(StrUtil.isNotBlank(code), DictData::getDictCode, code)
+                    .eq(StrUtil.isNotBlank(key), DictData::getDictKey, key);
+        DictData dictData = dictDataMapper.selectOne(queryWrapper);
+        return dictData.getDictValue();
+    }
+
+    @Override
+    public boolean checkDictExistByDictId(String dictId) {
+        LambdaQueryWrapper<Dict> lambdaQueryWrapper = new LambdaQueryWrapper<>();
+       lambdaQueryWrapper
+                .eq(StrUtil.isNotBlank(dictId),Dict::getId, dictId);
+        Integer integer = dictMapper.selectCount(lambdaQueryWrapper);
+        return integer > 0;
     }
 }

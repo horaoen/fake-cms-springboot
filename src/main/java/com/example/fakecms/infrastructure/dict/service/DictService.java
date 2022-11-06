@@ -9,4 +9,8 @@ public interface DictService extends IService<Dict> {
     IPage<Dict> queryPage(DictRequest request);
 
     boolean checkDictExistByDictCode(String dictCode);
+
+    String queryDictValueByKey(String code, String key);
+
+    boolean checkDictExistByDictId(String dictId);
 }

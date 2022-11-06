@@ -4,6 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.fakecms.infrastructure.dict.annotation.Dict;
 import com.example.fakecms.infrastructure.dict.mapper.DictMapper;
+import com.example.fakecms.infrastructure.dict.service.DictService;
 import com.example.fakecms.vo.UnifyResponseVO;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -11,6 +12,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -26,13 +28,14 @@ public class DictAspect {
 
     private static final String TextSUFFIX = "_dictText";
 
-    private final DictMapper dictMapper;
+    private final DictService dictService;
 
-    public DictAspect(DictMapper dictMapper) {
-        this.dictMapper = dictMapper;
+    @Autowired
+    public DictAspect(DictService dictService) {
+        this.dictService = dictService;
     }
 
-    @Pointcut("@annotation(com.example.fakecms.infrastructure.dict.annotation.Dict)")
+    @Pointcut("execution(* com.example.fakecms.controller.*.*(..))")
     public void dictPointCut() {
 
     }
@@ -79,7 +82,7 @@ public class DictAspect {
         if (StringUtils.isEmpty(key)) {
             return null;
         }
-        String DictValue = this.dictMapper.queryDictValueByKey(code, key);
+       String DictValue = dictService.queryDictValueByKey(code, key);
         return DictValue;
     }
 

@@ -32,12 +32,12 @@ public class DictController {
 
     @PostMapping
     public void add(@RequestBody DictDto dictDto) {
-        //TODO 检查dictCode是否存在，然后抛出异常。
         if(StringUtils.hasText(dictDto.getDictCode())){
             boolean exist = dictService.checkDictExistByDictCode(dictDto.getDictCode());
             if(exist) throw new ForbiddenException(5004);
         }
         Dict dict = new Dict();
+        dict.setDeleted("0");
         BeanUtils.copyProperties(dictDto, dict);
         dictService.save(dict);
     }
@@ -51,8 +51,13 @@ public class DictController {
     @PutMapping("{dictId}")
     public String update(@PathVariable String dictId,
     @RequestBody Dict dictDto) {
-        //TODO 检查id是否存在，check 各种check方法可以写在相应service里，也可以封装成Util类做的通用一点别的service也能用。
+        if(!StringUtils.isEmpty(dictId)){
+            boolean exist = dictService.checkDictExistByDictId(dictId);
+            if(exist) throw new ForbiddenException(5005);
+        }
         dictDto.setId(dictId);
+        dictDto.setDeleted("0");
+        System.out.println(dictDto);
         dictService.updateById(dictDto);
         return "更新成功";
     }
