@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.fakecms.mapper.PermissionMapper">
 
+<!--    TODO 我把type alias删了，所以这些do找不到，按类型分包如果还type alias就比较麻烦。-->
+<!--    TODO 实际上继承了BaseMapper后，mapper配置文件很少会需要用到，删了也没关系，只有及少量情况需要写sql-->
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="PermissionDO">
         <id column="id" property="id"/>

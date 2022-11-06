@@ -53,9 +53,11 @@ public class DictController {
     @RequestBody Dict dictDto) {
         if(!StringUtils.isEmpty(dictId)){
             boolean exist = dictService.checkDictExistByDictId(dictId);
+            //TODO 最好用NotFoundException，简明知意。
             if(exist) throw new ForbiddenException(5005);
         }
         dictDto.setId(dictId);
+        //TODO mybatis plus 标注了逻辑删除注解，有默认值“0”，应该不需要手动添加。
         dictDto.setDeleted("0");
         System.out.println(dictDto);
         dictService.updateById(dictDto);

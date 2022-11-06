@@ -23,6 +23,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     private DictDataMapper dictDataMapper;
 
+    //TODO 其实Autowired不写也行，构造注入的写法是尝试没必要写上提醒别人
     @Autowired
     public DictServiceImpl(DictMapper dictMapper, DictDataMapper dictDataMapper) {
         this.dictMapper = dictMapper;
@@ -56,6 +57,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     @Override
     public String queryDictValueByKey(String code, String key) {
+        //TODO 有波浪线提升，java8能做到泛型推断，不需要在后面显示生命类型。如果没有需要打开Project Structure有可能java版本设置的还是1.5。
         LambdaQueryWrapper<DictData> queryWrapper = new LambdaQueryWrapper<DictData>();
         queryWrapper.eq(StrUtil.isNotBlank(code), DictData::getDictCode, code)
                     .eq(StrUtil.isNotBlank(key), DictData::getDictKey, key);
