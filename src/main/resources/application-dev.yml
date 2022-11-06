@@ -20,9 +20,9 @@ logging:
     web: debug
 
 #properties文件格式：
+
 mybatis-plus:
-  type-aliases-package: com.example.fakecms.pojo
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.example.myfirstcms.pojo
+
 
 
