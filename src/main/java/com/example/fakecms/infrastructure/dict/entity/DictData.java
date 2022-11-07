@@ -9,7 +9,7 @@ import java.util.Date;
 @Data
 @TableName("dict_data")
 public class DictData {
-    @TableId(type = IdType.ASSIGN_ID)
+    @TableId(type = IdType.AUTO)
     private String id;
 
     @Schema(name = "字典编码")
