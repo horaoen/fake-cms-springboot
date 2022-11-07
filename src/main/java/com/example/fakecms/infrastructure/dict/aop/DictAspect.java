@@ -3,7 +3,6 @@ package com.example.fakecms.infrastructure.dict.aop;
 import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.example.fakecms.infrastructure.dict.annotation.Dict;
-import com.example.fakecms.infrastructure.dict.mapper.DictMapper;
 import com.example.fakecms.infrastructure.dict.service.DictService;
 import com.example.fakecms.vo.UnifyResponseVO;
 import com.fasterxml.jackson.core.JsonProcessingException;

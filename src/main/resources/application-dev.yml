@@ -19,10 +19,11 @@ logging:
   level:
     web: debug
 
-#properties文件格式：
-
+#mybatis-plus相关配置
 mybatis-plus:
-  type-aliases-package: com.example.myfirstcms.pojo
+  type-aliases-package: com.example.fakecms.pojo
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 
 
