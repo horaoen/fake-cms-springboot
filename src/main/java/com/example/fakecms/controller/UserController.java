@@ -12,6 +12,9 @@ import com.example.fakecms.service.UserService;
 import com.example.fakecms.vo.UnifyResponseVO;
 import com.example.fakecms.vo.UpdatedVO;
 import com.example.fakecms.vo.UserInfoVO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -23,6 +26,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/user")
 @Validated
+@Tag(name = "用户信息操作类")
 public class UserController {
 
     private UserService userService;
@@ -36,6 +40,7 @@ public class UserController {
     /**
      * 用户登陆
      */
+    @Operation(summary = "用户登录,返回token")
     @PostMapping("/login")
     public String login(@RequestBody LoginDTO loginDTO
 //                        @RequestHeader(value = "Tag", required = false) String tag
@@ -67,20 +72,23 @@ public class UserController {
     /**
      * 更新用户信息
      */
+    @Operation(summary = "更新用户身份信息")
     @PutMapping("")
     public UpdatedVO update(@RequestBody @Validated UpdateInfoDTO updateInfoDTO){
         userService.updateUserInfo(updateInfoDTO);
         return new UpdatedVO(6);
     }
 
+    @Operation(summary = "更新用户密码")
     @PutMapping("/change_password")
     public UpdatedVO updatePassword(@RequestBody @Validated ChangePasswordDTO validator) {
         userService.changeUserPassword(validator);
         return new UpdatedVO(4);
     }
 
+    @Operation(summary = "根据id查询用户")
     @GetMapping("/{id}")
-    public UnifyResponseVO<UserInfoVO> GetUserById(@PathVariable Integer id){
+    public UnifyResponseVO<UserInfoVO> GetUserById(@PathVariable @Parameter(description = "用户id") Integer id){
         UserDO userDO = userService.queryById(id);
         UserInfoVO userInfoVO = new UserInfoVO();
         BeanUtils.copyProperties(userDO, userInfoVO);

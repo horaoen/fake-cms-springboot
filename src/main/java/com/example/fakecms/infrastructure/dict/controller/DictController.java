@@ -33,6 +33,7 @@ public class DictController {
     }
 
     @PostMapping
+    @Operation(summary = "字典管理新增")
     public void addDictCode(@RequestBody DictDto dictDto) {
         if(StringUtils.hasText(dictDto.getDictCode())){
             boolean exist = dictService.checkDictExistByDictCode(dictDto.getDictCode());
@@ -44,12 +45,14 @@ public class DictController {
     }
 
     @DeleteMapping("{dictId}")
+    @Operation(summary = "字典管理根据id删除")
     public String deleteByDictId(@PathVariable String dictId) {
         dictService.removeById(dictId);
         return "删除成功";
     }
 
     @PutMapping("{dictId}")
+    @Operation(summary = "字典管理根据id进行跟新")
     public String updateByDictId(@PathVariable String dictId,
     @RequestBody Dict dictDto) {
         if(!StringUtils.isEmpty(dictId)){
