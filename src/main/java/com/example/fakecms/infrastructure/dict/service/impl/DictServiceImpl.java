@@ -44,7 +44,7 @@ public class DictServiceImpl extends ServiceImpl<DictMapper, Dict> implements Di
 
     @Override
     public boolean checkDictExistByDictCode(String dictCode) {
-        LambdaQueryWrapper<Dict> queryWrapper = new LambdaQueryWrapper<Dict>();
+        LambdaQueryWrapper<Dict> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper
                 .eq(StrUtil.isNotBlank(dictCode),Dict::getDictCode, dictCode);
         Integer integer = dictMapper.selectCount(queryWrapper);
