@@ -1,16 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Maven build、test') {
+        stage('test'){
             steps {
-                sh "mvn --version"
-                sh "mvn clean package"
-                echo "构建成功"
+                sh 'echo "test"'
             }
         }
-        stage('docker compose') {
+        stage('build'){
             steps {
-                echo "运行成功"
+                sh 'echo "build"'
+            }
+        }
+        stage('push'){
+            steps {
+                sh 'echo "push"'
+            }
+        }
+        stage('deploy'){
+            steps {
+                sh 'echo "deploy"'
             }
         }
     }
